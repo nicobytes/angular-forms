@@ -1,0 +1,13 @@
+<fieldset formArrayName="people">
+  <button type="button" (click)="addPerson()">Add</button>
+  @for(person of peopleField.controls; track $index) {
+  <div [formGroupName]="$index">
+    <p>
+      <input formControlName="name" type="text" placeholder="Name" />
+    </p>
+    <p>
+      <input formControlName="age" type="number" placeholder="Age" />
+    </p>
+  </div>
+  }
+</fieldset>
