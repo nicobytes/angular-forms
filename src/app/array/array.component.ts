@@ -50,7 +50,6 @@ export class ArrayComponent {
   }
 
   patchValue(data: any[]) {
-    console.log('update array');
     this.peopleField.clear();
     if (data.length === 0) {
       this.peopleField.push(this.createPersonGroup());
