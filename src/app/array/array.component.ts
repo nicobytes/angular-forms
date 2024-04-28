@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, ChangeDetectorRef } from '@angular/core';
 import { ControlContainer, FormGroup, ReactiveFormsModule, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-array',
@@ -32,6 +33,10 @@ export class ArrayComponent {
     this.parentForm?.addControl('people', this.peopleField);
 
     this.parentForm?.get('configuration')?.get('price')?.valueChanges
+    .pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+    )
     .subscribe(value => {
       console.log(value);
     })
@@ -45,6 +50,7 @@ export class ArrayComponent {
   }
 
   patchValue(data: any[]) {
+    console.log('update array');
     this.peopleField.clear();
     if (data.length === 0) {
       this.peopleField.push(this.createPersonGroup());
