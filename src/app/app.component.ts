@@ -1,4 +1,5 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
@@ -8,7 +9,7 @@ import { ArrayComponent } from './array/array.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, GroupComponent, ArrayComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, GroupComponent, ArrayComponent, JsonPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -40,6 +41,6 @@ export class AppComponent {
   }
 
   submit() {
-    console.log(this.form.getRawValue());
+    this.data.set(this.form.getRawValue() as any);
   }
 }

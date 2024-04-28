@@ -45,6 +45,7 @@ export class ArrayComponent {
   }
 
   patchValue(data: any[]) {
+    this.peopleField.clear();
     if (data.length === 0) {
       this.peopleField.push(this.createPersonGroup());
     } else {

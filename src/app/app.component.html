@@ -2,4 +2,9 @@
   <app-configuration [data]="data().configuration" />
   <app-array [data]="data().people" />
   <button type="submit">Send</button>
+  <pre>
+    <code>
+      {{ data() | json }}
+    </code>
+  </pre>
 </form>
